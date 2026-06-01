@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Summary — Dwayna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .travel-quotes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .quote {
+            position: absolute;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.35);
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            animation: firework 6s ease-in-out infinite;
+        }
+
+        .quote:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .quote:nth-child(2) { top: 60%; left: 65%; animation-delay: 1.5s; }
+        .quote:nth-child(3) { top: 30%; left: 55%; animation-delay: 3s; }
+        .quote:nth-child(4) { top: 75%; left: 20%; animation-delay: 4.5s; }
+        .quote:nth-child(5) { top: 45%; left: 35%; animation-delay: 6s; }
+        .quote:nth-child(6) { top: 85%; left: 50%; animation-delay: 7.5s; }
+        .quote:nth-child(7) { top: 20%; left: 75%; animation-delay: 9s; }
+        .quote:nth-child(8) { top: 55%; left: 8%; animation-delay: 10.5s; }
+        .quote:nth-child(9) { top: 40%; left: 80%; animation-delay: 12s; }
+        .quote:nth-child(10) { top: 70%; left: 40%; animation-delay: 13.5s; }
+
+        @keyframes firework {
+            0% { opacity: 0; transform: scale(0.3); }
+            15% { opacity: 0.5; transform: scale(1.1); }
+            30% { opacity: 0.35; transform: scale(1); }
+            70% { opacity: 0.35; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 10px 40px rgba(118,75,162,0.25);
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #764ba2;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        .subtitle {
+            color: #718096;
+            font-size: 0.8rem;
+            margin-bottom: 18px;
+        }
+        h2 {
+            color: #2d3748;
+            font-size: 0.95rem;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #f093fb;
+        }
+        .trip-block {
+            background: #faf0ff;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .trip-block h3 {
+            color: #764ba2;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+            font-size: 0.78rem;
+            color: #4a5568;
+        }
+        .detail-row strong { color: #2d3748; }
+        .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 0.78rem;
+        }
+        .payment-table th {
+            background: #764ba2;
+            color: #fff;
+            padding: 7px 10px;
+            text-align: left;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .payment-table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        .payment-table tr:nth-child(even) { background: #F7FAFC; }
+        .total-row td {
+            font-weight: 700;
+            background: #faf0ff !important;
+            border-top: 2px solid #f093fb;
+        }
+        .status-due {
+            background: #fed7d7;
+            color: #9b2c2c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: flashDue 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flashDue {
+            0%, 100% { background: #fed7d7; }
+            50% { background: #fc8181; color: #fff; }
+        }
+
+        .due-now-row {
+            background: #fff5f5 !important;
+            border-left: 3px solid #e53e3e;
+        }
+        .status-upcoming {
+            background: #f0e6ff;
+            color: #5b2d8e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .note {
+            background: #faf0ff;
+            border-left: 4px solid #f093fb;
+            padding: 10px 12px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            color: #5b2d8e;
+        }
+        .footer {
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.72rem;
+            color: #a0aec0;
+            text-align: center;
+        }
+
+        @media (max-width: 550px) {
+            body {
+                padding: 20px 10px;
+            }
+            .container {
+                max-width: 100%;
+                padding: 16px;
+                border-radius: 10px;
+            }
+            h1 { font-size: 1.1rem; }
+            h2 { font-size: 0.88rem; }
+            .trip-block { padding: 8px; }
+            .trip-block h3 { font-size: 0.8rem; }
+            .detail-row {
+                flex-direction: column;
+                gap: 1px;
+                font-size: 0.75rem;
+            }
+            .payment-table {
+                font-size: 0.72rem;
+            }
+            .payment-table th {
+                padding: 6px 6px;
+                font-size: 0.65rem;
+            }
+            .payment-table td {
+                padding: 6px 6px;
+            }
+            .note {
+                font-size: 0.72rem;
+                padding: 8px 10px;
+            }
+            .quote {
+                font-size: 0.7rem;
+            }
+        }
+        .tbd {
+            background: #f0e6ff;
+            color: #5b2d8e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="travel-quotes">
+        <span class="quote">✈️ "Travel is the only thing you buy that makes you richer"</span>
+        <span class="quote">🌴 "Life is short and the world is wide"</span>
+        <span class="quote">🌊 "Collect moments, not things"</span>
+        <span class="quote">☀️ "Adventure awaits, go find it"</span>
+        <span class="quote">🍹 "Good times and tan lines"</span>
+        <span class="quote">💃 "Girls just wanna have sun"</span>
+        <span class="quote">🚢 "Seas the day!"</span>
+        <span class="quote">🌺 "Vacation calories don't count"</span>
+        <span class="quote">✨ "Sandy toes and salty kisses"</span>
+        <span class="quote">🎉 "Let's wander where the WiFi is weak"</span>
+    </div>
+    <div class="container">
+        <h1>Hey Dwayna! 👋</h1>
+        <p class="subtitle">Here's a summary of our upcoming trips and your payment schedule.</p>
+
+        <!-- TRIP 1: Oakland / San Francisco -->
+        <h2>🏨 Trip 1: Oakland / San Francisco</h2>
+        <div class="trip-block">
+            <h3>Trip Details</h3>
+            <div class="detail-row"><span><strong>Dates:</strong> August 21–23, 2026</span></div>
+            <div class="detail-row"><span><strong>Hotel:</strong> Oakland Marriott City Center</span></div>
+            <div class="detail-row"><span><strong>Address:</strong> 1001 Broadway, Oakland, CA 94607</span></div>
+            <div class="detail-row"><span><strong>Room:</strong> 2 Queen Beds, Bay View</span></div>
+            <div class="detail-row"><span><strong>Duration:</strong> 2 nights</span></div>
+            <div class="detail-row"><span><strong>Confirmation #:</strong> 99917690</span></div>
+            <div class="detail-row"><span><strong>Flights:</strong> Southwest (Companion Pass) — <span class="tbd">TBD</span></span></div>
+        </div>
+
+        <table class="payment-table">
+            <thead>
+                <tr>
+                    <th>Payment</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Payment 1</td>
+                    <td>$123.82</td>
+                    <td>June 22, 2026</td>
+                    <td><span class="status-upcoming">UPCOMING</span></td>
+                </tr>
+                <tr>
+                    <td>Payment 2</td>
+                    <td>$123.81</td>
+                    <td>August 18, 2026</td>
+                    <td><span class="status-upcoming">UPCOMING</span></td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Owed</td>
+                    <td>$247.63</td>
+                    <td colspan="2">Your half of $495.26</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TRIP 2: Bahamas Cruise -->
+        <h2>🚢 Trip 2: Dwayna's Birthday — Bahamas Cruise</h2>
+        <div class="trip-block">
+            <h3>Trip Details</h3>
+            <div class="detail-row"><span><strong>Dates:</strong> September 18–21, 2026</span></div>
+            <div class="detail-row"><span><strong>Ship:</strong> Norwegian Getaway</span></div>
+            <div class="detail-row"><span><strong>Itinerary:</strong> Miami → Nassau → Great Stirrup Cay → Miami</span></div>
+            <div class="detail-row"><span><strong>Stateroom:</strong> BX / GTY</span></div>
+            <div class="detail-row"><span><strong>Duration:</strong> 3 nights</span></div>
+            <div class="detail-row"><span><strong>Reservation #:</strong> 65326895</span></div>
+            <div class="detail-row"><span><strong>Flights:</strong> Southwest (Companion Pass) to Miami — <span class="tbd">TBD</span></span></div>
+        </div>
+
+        <div class="trip-block">
+            <h3>🎁 Included Perks</h3>
+            <div class="detail-row"><span>✓ Specialty Dining (1 meal)</span></div>
+            <div class="detail-row"><span>✓ Wi-Fi Package (150 mins)</span></div>
+            <div class="detail-row"><span>✓ Unlimited Open Bar</span></div>
+            <div class="detail-row"><span>✓ Excursion Credit (shared)</span></div>
+        </div>
+
+        <table class="payment-table">
+            <thead>
+                <tr>
+                    <th>Payment</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="due-now-row">
+                    <td>Payment 1</td>
+                    <td>$257.50</td>
+                    <td>Now</td>
+                    <td><span class="status-due">DUE NOW</span></td>
+                </tr>
+                <tr>
+                    <td>Payment 2</td>
+                    <td>$257.50</td>
+                    <td>June 26, 2026</td>
+                    <td><span class="status-upcoming">UPCOMING</span></td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Owed</td>
+                    <td>$515.00</td>
+                    <td colspan="2">Your share of $930.00 cruise</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- GRAND TOTAL -->
+        <h2>💰 Grand Total</h2>
+        <table class="payment-table">
+            <thead>
+                <tr>
+                    <th>Trip</th>
+                    <th>Your Share</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Oakland / San Francisco</td>
+                    <td>$247.63</td>
+                </tr>
+                <tr>
+                    <td>Bahamas Cruise</td>
+                    <td>$515.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Owed to Keysha</td>
+                    <td>$762.63</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <strong>📝 Notes:</strong><br>
+            • Flights for both trips will be booked on Southwest using the Companion Pass — details TBD.<br>
+            • <strong>💳 Payment Link:</strong> <a href="https://cash.app/$PhoenixTravel" style="color: #764ba2; text-decoration: underline;">https://cash.app/$PhoenixTravel</a><br>
+            • <strong>💙 Venmo:</strong> @keystrickland<br>
+            • Please send payments to Keysha by the due dates listed above.<br>
+            • Let me know if you have any questions!
+        </div>
+
+        <div class="footer">
+            Sent to: dwayna.duvall@gmail.com<br>
+            Generated by Keysha's Trip Planner 🏖️
+        </div>
+    </div>
+
+    <script>
+        function highlightDueNow() {
+            const now = new Date();
+            const rows = document.querySelectorAll('.payment-table tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length >= 4) {
+                    const dateText = cells[2].textContent.trim();
+                    if (dateText === 'Now') return; // already highlighted
+                    const dateMatch = dateText.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s*\d{4}/i);
+                    if (dateMatch) {
+                        const dueDate = new Date(dateMatch[0]);
+                        const daysUntil = Math.ceil((dueDate - now) / (1000 * 60 * 60 * 24));
+                        if (daysUntil <= 0) {
+                            row.classList.add('due-now-row');
+                            const statusCell = cells[3];
+                            statusCell.innerHTML = '<span class="status-due">DUE NOW</span>';
+                        } else if (daysUntil <= 7) {
+                            row.classList.add('due-now-row');
+                            const statusCell = cells[3];
+                            statusCell.innerHTML = '<span class="status-due">DUE IN ' + daysUntil + ' DAYS</span>';
+                        }
+                    }
+                }
+            });
+        }
+        highlightDueNow();
+    </script>
+</body>
+</html>
