@@ -155,6 +155,14 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
+        .status-paid {
+            background: #c6f6d5;
+            color: #276749;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
         .note {
             background: #faf0ff;
             border-left: 4px solid #f093fb;
@@ -209,14 +217,6 @@
                 font-size: 0.7rem;
             }
         }
-        .tbd {
-            background: #f0e6ff;
-            color: #5b2d8e;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
@@ -236,56 +236,10 @@
         <h1>Hey Dwayna! 👋</h1>
         <p class="subtitle">Here's a summary of our upcoming trip and your payment schedule.</p>
 
-        <!-- TRIP 1: Oakland / San Francisco -->
+        <!-- Bahamas Cruise -->
         <h2>🚢 Dwayna's Birthday — Bahamas Cruise</h2>
         <div class="trip-block">
             <h3>Trip Details</h3>
-<<<<<<< HEAD
-            <div class="detail-row"><span><strong>Dates:</strong> August 21–23, 2026</span></div>
-            <div class="detail-row"><span><strong>Hotel:</strong> Oakland Marriott City Center</span></div>
-            <div class="detail-row"><span><strong>Address:</strong> 1001 Broadway, Oakland, CA 94607</span></div>
-            <div class="detail-row"><span><strong>Room:</strong> 2 Queen Beds, Bay View</span></div>
-            <div class="detail-row"><span><strong>Duration:</strong> 2 nights</span></div>
-            <div class="detail-row"><span><strong>Confirmation #:</strong> 99917690</span></div>
-            <div class="detail-row"><span><strong>Flights:</strong> Southwest (Companion Pass) — <span class="tbd">TBD</span></span></div>
-        </div>
-
-        <table class="payment-table">
-            <thead>
-                <tr>
-                    <th>Payment</th>
-                    <th>Amount</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Payment 1</td>
-                    <td>$123.82</td>
-                    <td>June 22, 2026</td>
-                    <td><span class="status-upcoming">UPCOMING</span></td>
-                </tr>
-                <tr>
-                    <td>Payment 2</td>
-                    <td>$123.81</td>
-                    <td>August 18, 2026</td>
-                    <td><span class="status-upcoming">UPCOMING</span></td>
-                </tr>
-                <tr class="total-row">
-                    <td>Total Owed</td>
-                    <td>$247.63</td>
-                    <td colspan="2">Your half of $495.26</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- TRIP 2: Bahamas Cruise -->
-        <h2>🚢 Trip 2: Dwayna's Birthday — Bahamas Cruise</h2>
-        <div class="trip-block">
-            <h3>Trip Details</h3>
-=======
->>>>>>> 24bc4061c2abc1cf3207acd507a204d8c36fcebe
             <div class="detail-row"><span><strong>Dates:</strong> September 17–21, 2026</span></div>
             <div class="detail-row"><span><strong>Ship:</strong> Norwegian Getaway</span></div>
             <div class="detail-row"><span><strong>Itinerary:</strong> Miami → Nassau → Great Stirrup Cay → Miami</span></div>
@@ -332,15 +286,10 @@
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
-                <tr class="due-now-row">
-                    <td>Cruise Payment 1</td>
-=======
                 <tr>
-                    <td>Payment 1</td>
->>>>>>> 24bc4061c2abc1cf3207acd507a204d8c36fcebe
+                    <td>Cruise Payment 1</td>
                     <td>$257.50</td>
-                    <td>Now</td>
+                    <td>—</td>
                     <td><span class="status-paid">$232.50 PAID (Venmo)</span></td>
                 </tr>
                 <tr class="due-now-row">
@@ -356,30 +305,26 @@
                     <td><span class="status-upcoming">UPCOMING</span></td>
                 </tr>
                 <tr>
-<<<<<<< HEAD
-                    <td>Hotel (your half)</td>
-                    <td>$81.00</td>
-=======
                     <td>Flight — your half (STL↔MIA)</td>
                     <td>$160.90</td>
->>>>>>> 24bc4061c2abc1cf3207acd507a204d8c36fcebe
+                    <td>August 7, 2026</td>
+                    <td><span class="status-upcoming">UPCOMING</span></td>
+                </tr>
+                <tr>
+                    <td>Hotel — your half (Waldorf Towers)</td>
+                    <td>$81.00</td>
                     <td>August 7, 2026</td>
                     <td><span class="status-upcoming">UPCOMING</span></td>
                 </tr>
                 <tr class="total-row">
                     <td>Total Owed</td>
-<<<<<<< HEAD
-                    <td>$596.00</td>
-                    <td colspan="2">Cruise $515.00 + Hotel $81.00</td>
-=======
-                    <td>$443.40 remaining</td>
-                    <td colspan="2">$232.50 paid via Venmo</td>
->>>>>>> 24bc4061c2abc1cf3207acd507a204d8c36fcebe
+                    <td>$524.40</td>
+                    <td colspan="2">$232.50 already paid via Venmo</td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- GRAND TOTAL -->
+        <!-- TOTAL REMAINING -->
         <h2>💰 Total Remaining</h2>
         <table class="payment-table">
             <thead>
@@ -398,7 +343,7 @@
                     <td>$257.50</td>
                 </tr>
                 <tr>
-                    <td>Flight — her half (STL↔MIA)</td>
+                    <td>Flight — your half (STL↔MIA)</td>
                     <td>$160.90</td>
                 </tr>
                 <tr>
@@ -406,13 +351,8 @@
                     <td>$81.00</td>
                 </tr>
                 <tr class="total-row">
-<<<<<<< HEAD
-                    <td>Total Owed to Keysha</td>
-                    <td>$843.63</td>
-=======
                     <td>Total Remaining to Keysha</td>
-                    <td>$443.40</td>
->>>>>>> 24bc4061c2abc1cf3207acd507a204d8c36fcebe
+                    <td>$524.40</td>
                 </tr>
             </tbody>
         </table>
@@ -420,6 +360,7 @@
         <div class="note">
             <strong>📝 Notes:</strong><br>
             • Flights are booked! Southwest Companion Pass — STL↔MIA, Confirmation: CRQ35A ✅<br>
+            • Pre-cruise hotel booked! Waldorf Towers South Beach, Sep 17 ✅<br>
             • <strong>💳 Payment Link:</strong> <a href="https://cash.app/$PhoenixTravel" style="color: #764ba2; text-decoration: underline;">https://cash.app/$PhoenixTravel</a><br>
             • <strong>💙 Venmo:</strong> @keystrickland<br>
             • Please send payments by the due dates listed above.<br>
@@ -440,7 +381,7 @@
                 const cells = row.querySelectorAll('td');
                 if (cells.length >= 4) {
                     const dateText = cells[2].textContent.trim();
-                    if (dateText === 'Now') return; // already highlighted
+                    if (dateText === 'Now' || dateText === '—') return;
                     const dateMatch = dateText.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s*\d{4}/i);
                     if (dateMatch) {
                         const dueDate = new Date(dateMatch[0]);
