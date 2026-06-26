@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Received — Dwayna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f7;
+            padding: 40px 20px;
+        }
+        .email-container {
+            max-width: 550px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .email-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 28px 30px;
+            text-align: center;
+            color: #fff;
+        }
+        .email-header h1 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        .email-header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .email-body {
+            padding: 28px 30px;
+        }
+        .greeting {
+            font-size: 1rem;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+        .payment-box {
+            background: #f0fff4;
+            border: 1px solid #c6f6d5;
+            border-left: 4px solid #38a169;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .payment-box h3 {
+            color: #276749;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .payment-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.85rem;
+            color: #4a5568;
+        }
+        .payment-detail strong {
+            color: #2d3748;
+        }
+        .amount-highlight {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #38a169;
+            text-align: center;
+            padding: 8px 0;
+        }
+        .remaining-box {
+            background: #faf0ff;
+            border: 1px solid #e9d5ff;
+            border-left: 4px solid #764ba2;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .remaining-box h3 {
+            color: #5b2d8e;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .remaining-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.82rem;
+            color: #4a5568;
+        }
+        .remaining-item.total {
+            border-top: 1px solid #e9d5ff;
+            margin-top: 8px;
+            padding-top: 8px;
+            font-weight: 700;
+            color: #5b2d8e;
+        }
+        .message {
+            font-size: 0.88rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .email-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #a0aec0;
+        }
+        .status-paid {
+            background: #c6f6d5;
+            color: #276749;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Payment Received! &#x2705;</h1>
+            <p>Bahamas Cruise — September 2026</p>
+        </div>
+        <div class="email-body">
+            <p class="greeting">Hey Dwayna! &#x1F44B;</p>
+            <p class="message">Just confirming I received your Venmo payment. Thank you!</p>
+
+            <div class="payment-box">
+                <h3>&#x2705; Payment Confirmed</h3>
+                <div class="amount-highlight">$128.75</div>
+                <div class="payment-detail"><span><strong>For:</strong></span><span>Cruise Payment 2a</span></div>
+                <div class="payment-detail"><span><strong>Method:</strong></span><span>Venmo</span></div>
+                <div class="payment-detail"><span><strong>Date:</strong></span><span>June 26, 2026</span></div>
+                <div class="payment-detail"><span><strong>Status:</strong></span><span><span class="status-paid">RECEIVED</span></span></div>
+            </div>
+
+            <div class="remaining-box">
+                <h3>Remaining Balance</h3>
+                <div class="remaining-item"><span>Cruise Payment 2b</span><span>$128.75</span></div>
+                <div class="remaining-item"><span>Flight — your half (STL&#x2194;MIA)</span><span>$160.90</span></div>
+                <div class="remaining-item"><span>Hotel — your half (Waldorf Towers)</span><span>$81.00</span></div>
+                <div class="remaining-item total"><span>Total Remaining</span><span>$370.65</span></div>
+            </div>
+
+            <p class="message">
+                Your next payment of <strong>$128.75</strong> is due by <strong>July 10, 2026</strong> for the remaining cruise balance.<br><br>
+                &#x1F4B3; <strong>Venmo:</strong> @keystrickland<br>
+                &#x1F4B3; <strong>Cash App:</strong> <a href="https://cash.app/$PhoenixTravel" style="color: #764ba2;">$PhoenixTravel</a><br><br>
+                Let me know if you have any questions! We're going to have so much fun. &#x1F3DD;&#xFE0F;
+            </p>
+        </div>
+        <div class="email-footer">
+            To: dwayna.duvall@gmail.com<br>
+            From: Keysha &#x1F496; | June 26, 2026
+        </div>
+    </div>
+</body>
+</html>
