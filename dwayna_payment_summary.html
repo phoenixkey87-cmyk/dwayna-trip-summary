@@ -376,6 +376,8 @@
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
                 if (cells.length >= 4) {
+                    const statusCell = cells[3];
+                    if (statusCell.querySelector('.status-paid')) return;
                     const dateText = cells[2].textContent.trim();
                     if (dateText === 'Now' || dateText === '—') return;
                     const dateMatch = dateText.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s*\d{4}/i);
@@ -384,11 +386,9 @@
                         const daysUntil = Math.ceil((dueDate - now) / (1000 * 60 * 60 * 24));
                         if (daysUntil <= 0) {
                             row.classList.add('due-now-row');
-                            const statusCell = cells[3];
                             statusCell.innerHTML = '<span class="status-due">DUE NOW</span>';
                         } else if (daysUntil <= 7) {
                             row.classList.add('due-now-row');
-                            const statusCell = cells[3];
                             statusCell.innerHTML = '<span class="status-due">DUE IN ' + daysUntil + ' DAYS</span>';
                         }
                     }
